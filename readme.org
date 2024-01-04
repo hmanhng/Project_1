@@ -1,0 +1,10 @@
+#+title: Project 1
+#+author: hmanhng
+
+* Source
+Code của dự án
+[[https://github.com/hmanhng/Project_1][Code]]
+File báo cáo latex
+[[file:report.tex][File report latex]]
+File báo cáo pdf
+[[file:report.pdf][File report pdf]]

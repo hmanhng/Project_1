@@ -1,0 +1,350 @@
+\documentclass[a4paper]{article}
+% \usepackage{vntex}
+%\usepackage[english,vietnam]{babel}
+%\usepackage[utf8]{inputenc}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[francais]{babel}
+\usepackage{a4wide,amssymb,epsfig,latexsym,array,hhline,fancyhdr}
+\usepackage[normalem]{ulem}
+%\usepackage{soul}
+\usepackage[makeroom]{cancel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{multicol,longtable,amscd}
+\usepackage{diagbox}%Make diagonal lines in tables
+\usepackage{booktabs}
+\usepackage{alltt}
+\usepackage[framemethod=tikz]{mdframed}% For highlighting paragraph backgrounds
+\usepackage{caption,subcaption}
+
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{graphicx}							% Standard graphics package
+\usepackage{array}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage[unicode]{hyperref}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
+%\usepackage{pstcol} 								% PSTricks with the standard color package
+
+\usepackage[normalem]{ulem}
+
+\newtheorem{theorem}{{\bf Định lý}}
+\newtheorem{property}{{\bf Tính chất}}
+\newtheorem{proposition}{{\bf Mệnh đề}}
+\newtheorem{corollary}[proposition]{{\bf Hệ quả}}
+\newtheorem{lemma}[proposition]{{\bf Bổ đề}}
+\theoremstyle{definition}
+\newtheorem{exer}{Bài toán}
+
+\def\thesislayout{	% A4: 210 × 297
+	\geometry{
+		a4paper,
+		total={160mm,240mm},  % fix over page
+		left=30mm,
+		top=30mm,
+	}
+}
+\thesislayout
+
+%\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-12){\includegraphics[width=10mm, height=10mm]{Images/soict.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily Trường Công Nghệ Thông Tin \& Truyền Thông}\\
+		\textbf{\bf \ttfamily Công Nghệ Thông Tin Việt Pháp}
+	\end{tabular}
+ \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+    \textbf{\LaTeX}
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Báo cáo project 1}
+\fancyfoot[R]{\scriptsize \ttfamily Trang {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+%%%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+\newcounter {subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection .\@alph\c@subsubsubsection}
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
+\newcommand*{\subsubsubsectionmark}[1]{}
+\makeatother
+
+\everymath{\color{blue}}%make in-line maths symbols blue to read/check easily
+
+\sloppy
+\captionsetup[figure]{labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=-9pt}
+%space remove between caption, figure, and text
+\captionsetup[table]{labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=7pt}
+%space remove between caption, table, and text
+
+%\floatplacement{figure}{H}%forced here float placement automatically for figures
+%\floatplacement{table}{H}%forced here float placement automatically for table
+%the following settings (11 lines) are to remove white space before or after the figures and tables
+%\setcounter{topnumber}{2}
+%\setcounter{bottomnumber}{2}
+%\setcounter{totalnumber}{4}
+%\renewcommand{\topfraction}{0.85}
+%\renewcommand{\bottomfraction}{0.85}
+%\renewcommand{\textfraction}{0.15}
+%\renewcommand{\floatpagefraction}{0.8}
+%\renewcommand{\textfraction}{0.1}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+\thesislayout
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+ĐẠI HỌC BÁCH KHOA HÀ NỘI \\
+TRƯỜNG CÔNG NGHỆ THÔNG TIN \& TRUYỀN THÔNG \\
+CÔNG NGHỆ THÔNG TIN VIỆT PHÁP
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3cm]{Images/hust.png}
+\end{center}
+\end{figure}
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{tabular}{c}
+\multicolumn{1}{c}{\textbf{{\Large PROJECT 1}}}\\
+~~\\
+\hline
+\\
+
+\textbf{\large Truy xuất dữ liệu lớn với bộ nhớ nhỏ}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{table}[h]
+\begin{tabular}{rrl}
+\hspace{4 cm} & GVHD: & Nguyễn Đức Anh\\
+& SV thực hiện: & Nguyễn Hữu Mạnh -- 20205213 \\
+\end{tabular}
+\end{table}
+\vspace{2cm}
+\begin{center}
+{\footnotesize Hà Nội, Tháng 1/2024}
+\end{center}
+\end{titlepage}
+
+%\thispagestyle{empty}
+\tableofcontents
+\newpage
+\phantomsection
+
+\section{Problem Statement}
+Tạo một chương trình truy xuất dữ liệu lớn trên bộ nhớ kích thước nhỏ:
+\begin{enumerate}
+\item Tạo dữ liệu nhân tạo bằng cách: Tạo 3,000,000 (3 triệu) mảng interger, kích thước mỗi mảng là một giá trị nguyên ngẫu nhiên từ 100 tới 10000. Lưu trữ tuỳ ý (Gợi ý, lưu trữ qua file).
+\item Tạo một hàm truy xuất ngẫu hiên tới mảng thứ i trong 3 triệu mảng trên (Gợi ý, cần lưu thêm giá trị bổ trợ để truy xuất tốt hơn).
+\end{enumerate}
+\textbf{Giới hạn bộ nhớ RAM: Dưới 500 MB.}
+
+\section{Design}
+\begin{enumerate}[]
+  \item Lưu trữ
+  \begin{enumerate}[-]
+    \item Lưu dữ liệu vào file ở dạng nhị phân để bảo toàn dữ liệu.
+    \item Lưu vị trí của mỗi mảng vào 1 file riêng để truy xuất.
+  \end{enumerate}
+  \item Truy xuất
+  \begin{enumerate}[-]
+    \item Sử dụng file lưu vị trí để truy cập đến mảng nhanh.
+    \item In ra mảng đó.
+  \end{enumerate}
+\end{enumerate}
+\texttt{ Để có thể giới hạn bộ nhớ, ta sử dụng java -Xmx500m}
+
+\section{Implementation}
+\subsection{Generate Arrays}
+\begin{enumerate}[1.]
+  \item Tạo biến lưu tổng số \texttt{array} và lưu giới hạn \texttt{elements} trong \texttt{array}
+  \lstinputlisting[language=Java, firstline=10, lastline=11]{src/GenerateArrays.java}
+  \item Thực hiện ghi vào 2 file \textbf{data.dat} và \textbf{pos.dat}\\
+  File \textbf{data.dat} lưu dữ liệu ở dạng nhị phân\\
+  File \textbf{pos.dat} vị trí của từng \texttt{array} ở dạng nhị phân
+  \lstinputlisting[language=Java, firstline=13, lastline=18]{src/GenerateArrays.java}
+  Khai báo 1 biến \texttt{pos} để lưu vị trí của từng \texttt{array}\\
+  Ta cần biến \texttt{pos} là \texttt{long} vì mỗi \texttt{array} có 100 đến 10000 \texttt{elements} nên 3 triệu mảng sẽ có tổng số \texttt{elements} $>$ max value \texttt{int} có thể lưu là $2^{31}$
+  \lstinputlisting[language=Java, firstline=19, lastline=19]{src/GenerateArrays.java}
+  Lặp qua từng \texttt{array}
+  \lstinputlisting[language=Java, firstline=21, lastline=21]{src/GenerateArrays.java}
+  Khai báo biến \texttt{size} là số \texttt{elements} của \texttt{array i}. Biến \texttt{size} random trong khoảng \texttt{rangeArr}
+  \lstinputlisting[language=Java, firstline=22, lastline=22]{src/GenerateArrays.java}
+  Chuyển value \texttt{pos} sang \texttt{byte} và ghi vào file \textbf{pos.dat}
+  \lstinputlisting[language=Java, firstline=24, lastline=26]{src/GenerateArrays.java}
+  Lặp qua từng \texttt{element} trong \texttt{array}, lấy giá trị của mỗi \texttt{element} là random 1 số \texttt{int}\\
+  Chuyển value \texttt{element} sang \texttt{byte} và ghi vào file \textbf{data.dat}
+  \lstinputlisting[language=Java, firstline=28, lastline=32]{src/GenerateArrays.java}
+  Sau khi ghi xong ta sẽ lưu thêm 1 value \texttt{pos} cuối cùng nữa để tính đươc số \texttt{element} của \texttt{array} cuối cùng
+  \lstinputlisting[language=Java, firstline=34, lastline=37]{src/GenerateArrays.java}
+
+  \item Hàm chuyển \texttt{int} hoặc \texttt{long} sang \texttt{byte}
+  \lstinputlisting[language=Java, firstline=49, lastline=55]{src/GenerateArrays.java}
+\end{enumerate}
+\textbf{Code hoàn chỉnh}
+  \lstinputlisting[language=Java]{src/GenerateArrays.java}
+
+\subsection{Access Arrays}
+\begin{enumerate}[1.]
+  \item Nhập vào thứ tự của \texttt{array} muốn truy xuất
+  \lstinputlisting[language=Java, firstline=8, lastline=11]{src/AccessArrays.java}
+  \item Thực hiện truy xuất \texttt{array}
+  \lstinputlisting[language=Java, firstline=13, lastline=13]{src/AccessArrays.java}
+  \item Hàm truy xuất \texttt{getArray}\\
+  Đọc dữ liệu từ 2 file \textbf{data.dat} và \textbf{pos.dat}\\
+  Ta sử dụng \texttt{RandomAccessFile} để có thể truy nhập file bằng \texttt{byte}.
+  \lstinputlisting[language=Java, firstline=16, lastline=18]{src/AccessArrays.java}
+  Thực hiện lấy vị trí của \texttt{array} cần truy xuất\\
+  Dùng \texttt{seek} để có thể truy nhập file vào đúng vị trí cần truy nhập
+  \lstinputlisting[language=Java, firstline=20, lastline=21]{src/AccessArrays.java}
+  Đọc vị trí và kích thước của \texttt{array}
+  \lstinputlisting[language=Java, firstline=22, lastline=23]{src/AccessArrays.java}
+  Truy nhập vào vị trí của \texttt{array} cần truy xuất
+  \lstinputlisting[language=Java, firstline=26, lastline=26]{src/AccessArrays.java}
+  Dùng vòng lặp \texttt{for} để đọc từng \texttt{element} của \texttt{array} cần truy xuất và in ra
+  \lstinputlisting[language=Java, firstline=27, lastline=30]{src/AccessArrays.java}
+\end{enumerate}
+\textbf{Code hoàn chỉnh}
+  \lstinputlisting[language=Java]{src/AccessArrays.java}
+
+\subsection{Code}
+\textbf{\href{https://github.com/hmanhng/Project_1}{Souce code toàn bộ của project_1}}
+
+\section{Testing}
+\subsection{Compile Code}
+\item Thư mục \textbf{src/} chứa source code, thư mục \textbf{bin/} chứa các file \texttt{.class} và các file dữ liệu.
+\item Giả sử ta đang ở thư mục cha của thu mục \textbf{src/} và thư mục \textbf{bin/}
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{javac -d ./bin src/*.java}
+\end{mdframed}
+Vào thư mục \texttt{bin}
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{cd ./bin}
+\end{mdframed}
+\subsection{Generate Arrays}
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{java GenerateArrays}
+\end{mdframed}
+Sau khi chạy ta được 2 file \textbf{data.dat} và \textbf{pos.dat} được lưu ở cùng thư mục \texttt{bin}
+\subsection{Access Arrays}
+\item Chạy AccessArrays với flag \texttt{-Xmx500m} để giới hạn bộ nhớ còn $500Mb$
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{java -Xmx500m AccessArrays\\
+    Input index: // nhập 1 số i bất kì}
+\end{mdframed}
+$>$ In ra console \texttt{array i} cần truy xuất
+\item Thời gian truy xuất với 3 triệu mảng, mỗi mảng từ 100 đến 10000 nghìn được thực hiện chỉ tính bằng mili giây, ta có thể kiểm tra bằng
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{time java -Xmx500m AccessArrays}
+\end{mdframed}
+\item lệnh này sẽ in ra thời gian thực hiện câu lệnh.
+
+
+\subsection{Test}
+\item Vì số lượng \texttt{array + element} quá lớn nên không thể kiểm tra được truy xuất có chính xác không nên ta sẽ tạo 1 file \textbf{test.java} với số \texttt{array} 100000, mỗi array từ 10-20 \texttt{element} để có thể kiểm tra việc truy xuất có đúng không
+  \lstinputlisting[language=Java, firstline=12, lastline=13]{src/test.java}
+  Ghi dữ liệu dạng text vào file \textbf{data.txt}
+  \lstinputlisting[language=Java, firstline=15, lastline=15]{src/test.java}
+  Trong vòng lặp \texttt{for} khi thực hiện random \texttt{element} và ghi vào \textbf{data.dat} ta cũng sẽ lưu dữ liệu vào \textbf{data.txt}, mỗi \texttt{array} sẽ được lưu vào 1 dòng
+  \lstinputlisting[language=Java, firstline=31, lastline=38]{src/test.java}
+\textbf{Code hoàn chỉnh}
+  \lstinputlisting[language=Java]{src/test.java}
+\item Biên dịch tương tự giống như trên
+\item Tạo dữ liệu nhỏ hơn với 100000 \texttt{arrays}, mỗi \texttt{array} từ 10->20 \texttt{element}
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{java test}
+\end{mdframed}
+\item Sau khi chạy ta được 3 file \textbf{data.dat}, \textbf{pos.dat} và \textbf{data.txt} lưu dữ liệu ở dạng văn bản có thể đọc, mỗi mảng được lưu 1 dòng cách nhau bởi " ". Được lưu ở cùng thư mục \texttt{bin}
+\item Truy xuất thử 1 \texttt{array} bất kì, ví dụ với \texttt{array} thứ \texttt{100000}
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{java -Xmx500m AccessArrays\\
+    Input index: 100000}
+\end{mdframed}
+$>$ In ra console \texttt{array 100000} cần truy xuất
+\item Để kiểm tra truy xuất có chính xác không ta kiểm tra file \textbf{data.txt}
+\item Ta sử dụng command \texttt{`sed'} để in ra màn hình \texttt{array 100000}
+\begin{mdframed}[backgroundcolor=backcolour, linecolor=backcolour]
+  \texttt{sed -n '100000p' data.txt}
+\end{mdframed}
+Lệnh này sẽ in ra dòng thứ \texttt{100000} trong file \textbf{data.txt}
+\item $>$ Đối chiếu kết quả của 2 lệnh thấy giống nhau $=>$ truy xuất chính xác.
+
+\section{Conclude}
+\begin{enumerate}[]
+  \item Qua bài trên em đã học được cách tổ chức lưu trữ 1 dữ liệu lớn để có thể tối ưu trong việc truy xuất.
+  \item Cách để có thể truy xuất vào 1 vị trí bất kì trong 1 file dữ liệu lớn trong thời gian ngắn gần như bằng \texttt{0} với bộ nhớ cực kì nhỏ.
+\end{enumerate}
+\end{document}

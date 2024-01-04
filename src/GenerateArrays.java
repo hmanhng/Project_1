@@ -11,10 +11,12 @@ public class GenerateArrays {
     int[] rangeArr = new int[] {100, 10_000};
 
     try (BufferedOutputStream binout =
-            new BufferedOutputStream(new FileOutputStream("../bin/data.dat")); // lưu data
+            // save data
+            new BufferedOutputStream(new FileOutputStream("../bin/data.dat"));
         BufferedOutputStream posout =
-            new BufferedOutputStream(new FileOutputStream("../bin/pos.dat"))) { // lưu position
-      long pos = 0; // long vì tổng số element của 3 triệu mảng > int = 2^31.
+            // save position
+            new BufferedOutputStream(new FileOutputStream("../bin/pos.dat"))) {
+      long pos = 0; // long because total element in 3M > int = 2^31.
 
       for (int i = 1; i <= totalArr; i++) {
         int size = random.nextInt(rangeArr[1] - rangeArr[0] + 1) + rangeArr[0];
@@ -37,13 +39,13 @@ public class GenerateArrays {
         System.out.println("Array: " + i);
       }
     } catch (IOException e) {
-      System.err.println("Lỗi khi viết vào tệp: " + e.getMessage());
+      System.err.println("Error write file: " + e.getMessage());
     }
   }
 
   private static final Random random = new Random();
 
-  // Phương thức chuyển đổi thành mảng byte (a = số byte)
+  // (int || long ) -> byte (a = total byte)
   private static byte[] toBytes(long value, int a) {
     byte[] result = new byte[a];
     for (int i = 0; i <= (a - 1); i++) {

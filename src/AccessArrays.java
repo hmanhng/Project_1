@@ -18,13 +18,13 @@ public class AccessArrays {
         RandomAccessFile dat = new RandomAccessFile("../bin/data.dat", "r")) {
 
       index--;
-      pos.seek(index * 8);
+      pos.seek(index * 8); // pos.dat luu du lieu long
       long posData = pos.readLong();
-      long posDataNext = pos.readLong();
+      long size = pos.readLong() - posData;
 
-      // System.out.print(posData + " " + posDataNext + "\n");
-      dat.seek(posData * 4);
-      for (long i = 1; i <= (posDataNext - posData); i++) {
+      // System.out.print(posData + " " + size + "\n");
+      dat.seek(posData * 4); // data.dat luu du lieu int
+      for (long i = 1; i <= size; i++) {
         int element = dat.readInt();
         System.out.print(element + " ");
       }
